@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassroomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +22,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware('api')->prefix('auth')->group(function () {
     Route::post('/login', [AuthController::class, 'login']);
+});
+
+Route::middleware('jwt.auth')->group(function () {
+    Route::resource('classrooms', ClassroomController::class);
 });
