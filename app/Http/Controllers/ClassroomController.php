@@ -38,8 +38,8 @@ class ClassroomController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'year_end' => 'integer|required',
+            'name'      => 'required',
+            'year_end'  => 'integer|required',
         ]);
 
         if($validator->fails()){
@@ -65,7 +65,13 @@ class ClassroomController extends Controller
      */
     public function show($id)
     {
-        //
+        $classroom = Classroom::find($id);
+
+        if(!$classroom){
+            return response()->json('Classe pas trouvé', 404);
+        }
+
+        return response()->json($classroom->with('students')->get());
     }
 
     /**
@@ -114,11 +120,6 @@ class ClassroomController extends Controller
      */
     public function destroy($id)
     {
-        $classroom = Classroom::find($id);
-        if(!$classroom){
-            return response()->json('La classe n\'existe pas' , 404);
-        }
-
-        return response()->json($classroom->delete());
+        //
     }
 }

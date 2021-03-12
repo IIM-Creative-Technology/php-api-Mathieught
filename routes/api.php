@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,4 +30,8 @@ Route::middleware('api')->prefix('auth')->group(function () {
 
 Route::middleware('jwt.auth')->group(function () {
     Route::resource('classrooms', ClassroomController::class);
+    Route::resource('students', StudentController::class);
+    Route::resource('courses', CourseController::class);
+    Route::resource('professors', ProfessorController::class);
+    Route::resource('mark', MarkController::class);
 });

@@ -13,4 +13,9 @@ class Classroom extends Model
         'name',
         'year_end',
     ];
+
+    // link classroom to student
+    public function students(){
+        return $this->hasMany(Student::class);
+    }
 }

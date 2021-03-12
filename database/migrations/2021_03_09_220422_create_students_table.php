@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->id();
             $table->string('lastname');
             $table->string('firstname');
+            $table->integer('age');
             $table->year('year_start');
 
             // Link a la table classroom
