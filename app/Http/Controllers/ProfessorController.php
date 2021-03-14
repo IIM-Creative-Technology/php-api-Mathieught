@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Professor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProfessorController extends Controller
 {
@@ -13,7 +15,7 @@ class ProfessorController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Professor::all());
     }
 
     /**
@@ -34,7 +36,24 @@ class ProfessorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'lastname'     => 'required|string',
+            'firstname'    => 'required|string',
+            'year_start'   => 'required|integer',
+        ]);
+
+        if($validator->fails()){
+        return response()->json($validator->errors(), 400);
+        }
+        $lastname = $request->lastname;
+        $firstname= $request->firstname;
+
+        $professor = Professor::where(['lastname' => $lastname] , ['firstname', $firstname])->first();
+
+        if($professor){
+            return response()->json('l\'intervenant existe deja' , 409);
+        }
+        return response()->json(Professor::create($request->all()));
     }
 
     /**
@@ -45,7 +64,13 @@ class ProfessorController extends Controller
      */
     public function show($id)
     {
-        //
+        $professor = Professor::find($id);
+
+        if(!$professor){
+            return response()->json('Professeur pas trouvé', 404);
+        }
+
+        return response()->json($professor);
     }
 
     /**
@@ -79,6 +104,11 @@ class ProfessorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $professor = Professor::find($id);
+        if(!$professor){
+            return response()->json('Professeur pas trouvé' , 404);
+        }
+
+        return response()->json($professor->delete());
     }
 }

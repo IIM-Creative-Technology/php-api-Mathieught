@@ -16,4 +16,13 @@ class Course extends Model
         'professor_id',
         'classroom_id',
     ];
+
+        // link  course to professor
+        public function professor(){
+            return $this->belongsTo(Professor::class);
+        }
+        // link  course to classroom
+        public function classroom(){
+            return $this->belongsTo(Classroom::class);
+        }
 }

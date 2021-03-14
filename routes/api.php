@@ -33,5 +33,5 @@ Route::middleware('jwt.auth')->group(function () {
     Route::resource('students', StudentController::class);
     Route::resource('courses', CourseController::class);
     Route::resource('professors', ProfessorController::class);
-    Route::resource('mark', MarkController::class);
+    Route::resource('marks', MarkController::class);
 });

@@ -14,4 +14,13 @@ class Mark extends Model
         'student_id',
         'course_id',
     ];
+
+    // link  mark to student
+    public function student(){
+        return $this->belongsTo(Student::class);
+    }
+    // link  mark to course
+    public function course(){
+        return $this->belongsTo(Course::class);
+    }
 }

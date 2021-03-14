@@ -120,6 +120,11 @@ class ClassroomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $classroom = Classroom::find($id);
+        if(!$classroom){
+            return response()->json('La classe n\'existe pas' , 404);
+        }
+
+        return response()->json($classroom->delete());
     }
 }
