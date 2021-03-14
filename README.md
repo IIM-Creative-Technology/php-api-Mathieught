@@ -98,6 +98,10 @@ DELETE /api/courses/{id}
 
 #### Notes 
 
+-   `mark` : Integer
+-   `student_id` : Integer
+-   `course_id` : Integer
+
 ```
 GET /api/marks
 GET /api/marks/{id}
