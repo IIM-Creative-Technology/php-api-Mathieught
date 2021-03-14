@@ -22,7 +22,9 @@ class MarkFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'mark' => $this->faker->numberBetween(0, 20),
+            'student_id' => $this->faker->numberBetween(1, 8),
+            'course_id' => $this->faker->numberBetween(1, 8)
         ];
     }
 }

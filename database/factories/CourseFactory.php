@@ -22,7 +22,11 @@ class CourseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word,
+            'date_start' => $this->faker->dateTimeBetween('now'),
+            'date_end' => $this->faker->dateTimeBetween('now', '+5 days'),
+            'professor_id' => $this->faker->numberBetween(1, 3),
+            'classroom_id' => $this->faker->numberBetween(1, 3)
         ];
     }
 }

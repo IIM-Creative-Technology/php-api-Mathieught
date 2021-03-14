@@ -21,6 +21,10 @@ class ClassroomFactory extends Factory
      */
     public function definition()
     {
-
+        static $base_year = 2021;
+        return [
+            'name' => $this->faker->randomLetter,
+            'year_end' => $base_year++,
+        ];
     }
 }
